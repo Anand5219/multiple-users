@@ -1,0 +1,49 @@
+
+<html >
+  
+  <body>
+    <header>
+      <h1> Appoitment Booking </h1>
+    </header>
+
+    <section class="container">
+        <form onsubmit="saveToLocalStorage(event)">
+          <label>Name:</label>
+          <input type="text" name="username" required>
+        </div>
+        <div><br>
+          <label>Email:</label>
+          <input type="email" name ="emailId" required>
+        </div>
+        <div><br>
+          <label>Phone Number:</label>
+          <input type="text" name="phonenumber">
+        </div><br>
+        <input class="btn" type="submit" value="Submit">
+      </form>
+      <script>
+      
+function saveToLocalStorage(event){
+  event.preventDefault();
+  const name =event.target.username.value;
+  const email =event.target.emailId.value;
+  const phonenumber =event.target.phonenumber.value;
+  // localStorage.setItem('name',name);
+  // localStorage.setItem('email',email);
+  // localStorage.setItem('phonenumber',phonenumber);
+  const obj={
+    name,
+    email,
+    phonenumber,
+  }
+  localStorage.setItem(obj.email, JSON.stringify(obj))
+showNewUserOnScreen(obj)
+}
+function showNewUserOnScreen(user){
+  const parentNode=document.getElementById('listOfUsers');
+  const childHTML ='<li> ${user.name} - ${user.email} </li>'
+parentNode.innerHTML =parentNode.innerHTML+childHTML;
+}
+    </script>
+  </body>
+</html>
